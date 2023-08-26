@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Weather-Fetcher" target="1.5" />
+      <module name="Weather-Fetcher" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
