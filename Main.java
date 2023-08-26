@@ -54,16 +54,19 @@ public class Main {
             double temperature = jsonNode.path("main").path("temp").asDouble();
             System.out.println("Temperature: " + temperature);
 
+            MyData myData = new MyData("Temperature", Double.toString(temperature));
+            myData.sendDataToApi();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try {
+        /*try {
             MyData myData = new MyData("foo", "bar");
             myData.sendDataToApi();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 }
