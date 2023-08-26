@@ -3,8 +3,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.OutputStream;
 
 
 public class Main {
@@ -18,7 +19,8 @@ public class Main {
         double longitude = -80.191788;
 
         try {
-            String apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=25.76&lon=-80.19&appid=" + apiKey;
+            String apiURL = "https://api.openweathermap.org/data/2.5/weather?lat=25.76&lon=-80.19&appid=" + apiKey +
+                    "&units=imperial";
 
             URL url = new URL(apiURL);
 
@@ -45,6 +47,14 @@ public class Main {
             System.out.println("Response data:\n" + response.toString());
 
             connection.disconnect();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(response.toString());
+
+            double temperature = jsonNode.path("main").path("temp").asDouble();
+            System.out.println("Temperature: " + temperature);
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
